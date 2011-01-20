@@ -226,7 +226,7 @@ public class OWNEID3V2Frame extends ID3V2Frame
         // date of purchase until
         oIDOS.write(m_sDateOfPurchase.getBytes());
         // seller
-        oIDOS.write(m_sSeller.getBytes(m_oTextEncoding.getEncodingString()));
+        oIDOS.write(m_oTextEncoding.encode(m_sSeller));
     }
 
     public boolean equals(Object oOther)

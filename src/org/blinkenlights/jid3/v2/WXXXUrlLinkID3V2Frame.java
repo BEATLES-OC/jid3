@@ -246,7 +246,7 @@ public class WXXXUrlLinkID3V2Frame extends UrlLinkID3V2Frame
         throws IOException
     {
         oIDOS.writeUnsignedByte(m_oTextEncoding.getEncodingValue());
-        oIDOS.write(m_sDescription.getBytes(m_oTextEncoding.getEncodingString()));
+        oIDOS.write(m_oTextEncoding.encode(m_sDescription));
         // null separating content descriptor from lyrics
         if (m_oTextEncoding.equals(TextEncoding.ISO_8859_1))
         {

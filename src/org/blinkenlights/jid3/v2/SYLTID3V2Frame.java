@@ -365,7 +365,7 @@ public class SYLTID3V2Frame extends ID3V2Frame
         oIDOS.write(m_sLanguage.getBytes());    // language
         oIDOS.write(m_oTimestampFormat.getValue()); // timestamp format
         oIDOS.write(m_oContentType.getValue()); // content type
-        oIDOS.write(m_sContentDescriptor.getBytes(m_oTextEncoding.getEncodingString()));   // content descriptor
+        oIDOS.write(m_oTextEncoding.encode(m_sContentDescriptor));   // content descriptor
         // null after content descriptor
         if (m_oTextEncoding.equals(TextEncoding.ISO_8859_1))
         {
@@ -382,7 +382,7 @@ public class SYLTID3V2Frame extends ID3V2Frame
         {
             Integer oTimestamp = (Integer)oIter.next();
             String sText = (String)m_oSyncEntryMap.get(oTimestamp);
-            oIDOS.write(sText.getBytes(m_oTextEncoding.getEncodingString()));  // sync text
+            oIDOS.write(m_oTextEncoding.encode(sText));  // sync text
             // null after sync text
             if (m_oTextEncoding.equals(TextEncoding.ISO_8859_1))
             {

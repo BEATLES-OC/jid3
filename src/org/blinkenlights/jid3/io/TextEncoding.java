@@ -26,6 +26,9 @@ package org.blinkenlights.jid3.io;
 
 import org.blinkenlights.jid3.*;
 
+import java.io.UnsupportedEncodingException;
+import java.util.Arrays;
+
 /** Text encoding representation used in v2 frames.
  *
  * @author  paul
@@ -92,6 +95,25 @@ public class TextEncoding
                 return "ISO-8859-1";
             case (byte)0x01:
                 return "Unicode";
+            default:
+                return null;    // can't happen because we control construction of this object
+        }
+    }
+
+    public byte[] encode(String str) throws UnsupportedEncodingException {
+        switch(m_byEncoding)
+        {
+            case (byte)0x00:
+                return str.getBytes(getEncodingString());
+            case (byte)0x01:
+                byte[] encoded = str.getBytes("UTF-16LE");
+                byte[] bomEncoded = new byte[encoded.length + 2];
+                bomEncoded[0] = (byte)0xFF;
+                bomEncoded[1] = (byte)0xFE;
+                for(int i = 0, n = encoded.length; i < n; i++) {
+                    bomEncoded[i + 2] = encoded[i];
+                }
+                return bomEncoded;
             default:
                 return null;    // can't happen because we control construction of this object
         }

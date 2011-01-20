@@ -126,6 +126,6 @@ abstract class TextInformationID3V2Frame extends ID3V2Frame
         throws IOException
     {
         oIDOS.writeUnsignedByte(m_oTextEncoding.getEncodingValue());
-        oIDOS.write(m_sInformation.getBytes(m_oTextEncoding.getEncodingString()));
+        oIDOS.write(m_oTextEncoding.encode(m_sInformation));
     }
 }

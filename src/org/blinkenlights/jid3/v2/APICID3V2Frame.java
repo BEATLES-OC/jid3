@@ -294,7 +294,7 @@ public class APICID3V2Frame extends ID3V2Frame
         // description
         if (m_sDescription != null)
         {
-            oIDOS.write(m_sDescription.getBytes(m_oTextEncoding.getEncodingString()));
+            oIDOS.write(m_oTextEncoding.encode(m_sDescription));
         }
         // null separating description from picture data
         if (m_oTextEncoding.equals(TextEncoding.ISO_8859_1))

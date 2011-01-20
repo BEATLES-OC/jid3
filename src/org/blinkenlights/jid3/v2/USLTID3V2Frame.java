@@ -238,7 +238,7 @@ public class USLTID3V2Frame extends ID3V2Frame
         // content descriptor
         if (m_sContentDescriptor != null)
         {
-            oIDOS.write(m_sContentDescriptor.getBytes(m_oTextEncoding.getEncodingString()));
+            oIDOS.write(m_oTextEncoding.encode(m_sContentDescriptor));
         }
         // null separating content descriptor from lyrics
         if (m_oTextEncoding.equals(TextEncoding.ISO_8859_1))
@@ -251,7 +251,7 @@ public class USLTID3V2Frame extends ID3V2Frame
             oIDOS.writeUnsignedByte(0);
         }
         // lyrics
-        oIDOS.write(m_sLyrics.getBytes(m_oTextEncoding.getEncodingString()));
+        oIDOS.write(m_oTextEncoding.encode(m_sLyrics));
     }
 
     public boolean equals(Object oOther)

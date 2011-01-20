@@ -57,8 +57,8 @@ public class ID3Test
     {
         System.out.println("\n--- testWriteV1_0Tag ---");
 
-        copy(AllTests.s_RootPath + "notags.mp3", AllTests.s_RootPath + "id3_v1_0_testresult.mp3");
-        File oSourceFile = new File(AllTests.s_RootPath + "id3_v1_0_testresult.mp3");
+        copy(AllTests.s_RootPath + "notags.mp3", AllTests.s_TempPath + "id3_v1_0_testresult.mp3");
+        File oSourceFile = new File(AllTests.s_TempPath + "id3_v1_0_testresult.mp3");
         MediaFile oMediaFile = new MP3File(oSourceFile);
 
         // test v1.0 tags
@@ -81,8 +81,8 @@ public class ID3Test
     {
         System.out.println("\n--- testWriteV1_1Tag ---");
 
-        copy(AllTests.s_RootPath + "notags.mp3", AllTests.s_RootPath + "id3_v1_1_testresult.mp3");
-        File oSourceFile = new File(AllTests.s_RootPath + "id3_v1_1_testresult.mp3");
+        copy(AllTests.s_RootPath + "notags.mp3", AllTests.s_TempPath + "id3_v1_1_testresult.mp3");
+        File oSourceFile = new File(AllTests.s_TempPath + "id3_v1_1_testresult.mp3");
         MediaFile oMediaFile = new MP3File(oSourceFile);
         
         // test v1.1 tags

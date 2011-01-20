@@ -205,7 +205,7 @@ public class IPLSID3V2Frame extends ID3V2Frame
             {
                 InvolvedPerson oIP = (InvolvedPerson)oIPIter.next();
                 
-                oIDOS.write(oIP.getInvolvement().getBytes(m_oTextEncoding.getEncodingString()));
+                oIDOS.write(m_oTextEncoding.encode(oIP.getInvolvement()));
                 // null after involvement
                 if (m_oTextEncoding.equals(TextEncoding.ISO_8859_1))
                 {
@@ -216,7 +216,7 @@ public class IPLSID3V2Frame extends ID3V2Frame
                     oIDOS.writeUnsignedByte(0);
                     oIDOS.writeUnsignedByte(0);
                 }
-                oIDOS.write(oIP.getPerson().getBytes(m_oTextEncoding.getEncodingString()));
+                oIDOS.write(m_oTextEncoding.encode(oIP.getPerson()));
                 // null after person
                 if (m_oTextEncoding.equals(TextEncoding.ISO_8859_1))
                 {

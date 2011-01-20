@@ -381,7 +381,7 @@ public class COMRID3V2Frame extends ID3V2Frame
         // name of seller
         if (m_sNameOfSeller != null)
         {
-            oIDOS.write(m_sNameOfSeller.getBytes(m_oTextEncoding.getEncodingString()));
+            oIDOS.write(m_oTextEncoding.encode(m_sNameOfSeller));
         }
         // null terminating optional name of seller
         if (m_oTextEncoding.equals(TextEncoding.ISO_8859_1))
@@ -396,7 +396,7 @@ public class COMRID3V2Frame extends ID3V2Frame
         // description
         if (m_sDescription != null)
         {
-            oIDOS.write(m_sDescription.getBytes(m_oTextEncoding.getEncodingString()));
+            oIDOS.write(m_oTextEncoding.encode(m_sDescription));
         }
         // null terminating optional description
         if (m_oTextEncoding.equals(TextEncoding.ISO_8859_1))

@@ -255,7 +255,7 @@ public class COMMID3V2Frame extends ID3V2Frame
         // short description
         if (m_sShortDescription != null)
         {
-            oIDOS.write(m_sShortDescription.getBytes(m_oTextEncoding.getEncodingString()));
+            oIDOS.write(m_oTextEncoding.encode(m_sShortDescription));
         }
         // null separating description from picture data
         if (m_oTextEncoding.equals(TextEncoding.ISO_8859_1))
@@ -268,7 +268,7 @@ public class COMMID3V2Frame extends ID3V2Frame
             oIDOS.writeUnsignedByte(0);
         }
         // actual text of comment
-        oIDOS.write(m_sActualText.getBytes(m_oTextEncoding.getEncodingString()));
+        oIDOS.write(m_oTextEncoding.encode(m_sActualText));
     }
     
     public boolean equals(Object oOther)

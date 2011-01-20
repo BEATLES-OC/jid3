@@ -72,7 +72,7 @@ abstract public class ID3V2Tag extends ID3Tag
         m_bUnsynchronizationUsedFlag = bUnsynchronizationUsedFlag;
         m_bExtendedHeaderFlag = bExtendedHeaderFlag;
         m_bExperimentalFlag = bExperimentalFlag;
-        m_oFrameIdToFrameMap = new HashMap();
+        m_oFrameIdToFrameMap = new LinkedHashMap();
         //HACK: Default padding of 16 bytes, because Winamp doesn't seem to see the last frame in a v2 tag
         //      when there is less than 6 bytes of padding.  (???)
         m_iPaddingLength = s_iDefaultPaddingLength;

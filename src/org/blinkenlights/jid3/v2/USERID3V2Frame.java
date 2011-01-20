@@ -169,7 +169,7 @@ public class USERID3V2Frame extends ID3V2Frame
     {
         oIDOS.write(m_oTextEncoding.getEncodingValue()); // text encoding
         oIDOS.write(m_sLanguage.getBytes());   // language
-        oIDOS.write(m_sTermsOfUse.getBytes(m_oTextEncoding.getEncodingString()));  // terms of use
+        oIDOS.write(m_oTextEncoding.encode(m_sTermsOfUse));  // terms of use
     }
     
     public boolean equals(Object oOther)

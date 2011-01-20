@@ -261,7 +261,7 @@ public class GEOBID3V2Frame extends ID3V2Frame
         // filename
         if (m_sFilename != null)
         {
-            oIDOS.write(m_sFilename.getBytes(m_oTextEncoding.getEncodingString()));
+            oIDOS.write(m_oTextEncoding.encode(m_sFilename));
         }
         // null after filename
         if (m_oTextEncoding.equals(TextEncoding.ISO_8859_1))
@@ -274,7 +274,7 @@ public class GEOBID3V2Frame extends ID3V2Frame
             oIDOS.writeUnsignedByte(0);
         }
         // content description
-        oIDOS.write(m_sContentDescription.getBytes(m_oTextEncoding.getEncodingString()));
+        oIDOS.write(m_oTextEncoding.encode(m_sContentDescription));
         // null after content description
         if (m_oTextEncoding.equals(TextEncoding.ISO_8859_1))
         {

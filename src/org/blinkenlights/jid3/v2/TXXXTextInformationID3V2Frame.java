@@ -165,7 +165,7 @@ public class TXXXTextInformationID3V2Frame extends TextInformationID3V2Frame
         throws IOException
     {
         oIDOS.writeUnsignedByte(m_oTextEncoding.getEncodingValue());
-        oIDOS.write(m_sDescription.getBytes(m_oTextEncoding.getEncodingString()));
+        oIDOS.write(m_oTextEncoding.encode(m_sDescription));
         // null separating description from information string
         if (m_oTextEncoding.equals(TextEncoding.ISO_8859_1))
         {
@@ -176,7 +176,7 @@ public class TXXXTextInformationID3V2Frame extends TextInformationID3V2Frame
             oIDOS.writeUnsignedByte(0);
             oIDOS.writeUnsignedByte(0);
         }
-        oIDOS.write(m_sInformation.getBytes(m_oTextEncoding.getEncodingString()));
+        oIDOS.write(m_oTextEncoding.encode(m_sInformation));
     }
 
     public boolean equals(Object oOther)

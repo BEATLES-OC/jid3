@@ -112,9 +112,10 @@ public class ID3V1Test extends TestCase
         try
         {
             // get a copy of an unmodified file to edit
-            copy(AllTests.s_RootPath + "notags.mp3", AllTests.s_RootPath + "id3_v1_0_testresult.mp3");
+            String sDestination = AllTests.s_TempPath + "id3_v1_0_testresult.mp3";
+            copy(AllTests.s_RootPath + "notags.mp3", sDestination);
 
-            File oSourceFile = new File(AllTests.s_RootPath + "id3_v1_0_testresult.mp3");
+            File oSourceFile = new File(sDestination);
             MediaFile oMediaFile = new MP3File(oSourceFile);
     
             // write v1.0 tag to file
@@ -132,7 +133,7 @@ public class ID3V1Test extends TestCase
             oMediaFile.sync();
 
             // check against expected result
-            compare(AllTests.s_RootPath + "v1_0tags.mp3", AllTests.s_RootPath + "id3_v1_0_testresult.mp3");
+            compare(AllTests.s_RootPath + "v1_0tags.mp3", sDestination);
         }
         catch (Exception e)
         {
@@ -185,9 +186,10 @@ public class ID3V1Test extends TestCase
         try
         {
             // get a copy of an unmodified file to edit
-            copy(AllTests.s_RootPath + "notags.mp3", AllTests.s_RootPath + "id3_v1_1_testresult.mp3");
+            String sDestination = AllTests.s_TempPath + "id3_v1_1_testresult.mp3";
+            copy(AllTests.s_RootPath + "notags.mp3", sDestination);
 
-            File oSourceFile = new File(AllTests.s_RootPath + "id3_v1_1_testresult.mp3");
+            File oSourceFile = new File(sDestination);
             MediaFile oMediaFile = new MP3File(oSourceFile);
         
             // write v1.1 tag to file
@@ -206,7 +208,7 @@ public class ID3V1Test extends TestCase
             oMediaFile.sync();
             
             // check against expected result
-            compare(AllTests.s_RootPath + "v1_1tags.mp3", AllTests.s_RootPath + "id3_v1_1_testresult.mp3");
+            compare(AllTests.s_RootPath + "v1_1tags.mp3", sDestination);
         }
         catch (Exception e)
         {

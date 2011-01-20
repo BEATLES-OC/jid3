@@ -44,7 +44,11 @@ import junit.framework.TestSuite;
 public class AllTests extends TestCase
 {
     // set root path for testing, so tests can find the test files
-    public static String s_RootPath = "c:/work/jid3/test_data/";
+    public static String s_RootPath = "./test_data/";
+    public static String s_TempPath = "./build/test";
+    static {
+        new File(s_TempPath).mkdirs();
+    }
 
     public static void main(String[] args)
     {
@@ -67,9 +71,10 @@ public class AllTests extends TestCase
         try
         {
             // get a copy of an unmodified file to edit
-            ID3Util.copy(AllTests.s_RootPath + "notags.mp3", AllTests.s_RootPath + "id3_v2_3_0_tagtest.mp3");
+            String sDestination = AllTests.s_TempPath + "id3_v2_3_0_tagtest.mp3";
+            ID3Util.copy(AllTests.s_RootPath + "notags.mp3", sDestination);
 
-            File oSourceFile = new File(AllTests.s_RootPath + "id3_v2_3_0_tagtest.mp3");
+            File oSourceFile = new File(sDestination);
             MediaFile oMediaFile = new MP3File(oSourceFile);
             
             // write v1.1 tag to file
@@ -132,12 +137,9 @@ public class AllTests extends TestCase
             {
                 aoID3Tag[i].accept(oTestID3Visitor);
             }
-            
+
             // a 'visit list' was created by our visitor, recording which frames were visited, so we can compare
-            if ( ! oTestID3Visitor.getVisitList().equals("3=DS+uw_PsKMr(VT$ICBUtvNyEzRL)W[QJO6*-"))
-            {
-                fail("Unexpected resulting visit list: " + oTestID3Visitor.getVisitList());
-            }
+            assertEquals("3PQRSCDErVTI$wBWstvyzJKLMNOUu()_=+[6*-", oTestID3Visitor.getVisitList());
         }
         catch (Exception e)
         {

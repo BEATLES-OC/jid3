@@ -42,6 +42,8 @@ import org.blinkenlights.jid3.v2.*;
  */
 public class ID3V2Test extends TestCase
 {
+    private static final String TAG_TEST_MP3 = AllTests.s_TempPath + "id3_v2_3_0_tagtest.mp3";
+
     /**
      * Constructor for ID3V2Test.
      * @param arg0
@@ -118,51 +120,14 @@ public class ID3V2Test extends TestCase
         }
     }
 
-/*    public void testWriteV2_3_0Tag()
-    {
-        try
-        {
-            // get a copy of an unmodified file to edit
-            ID3Util.copy(AllTests.s_RootPath + "notags.mp3", AllTests.s_RootPath + "id3_v2_3_0_testresult.mp3");
-
-            File oSourceFile = new File(AllTests.s_RootPath + "id3_v2_3_0_testresult.mp3");
-            MediaFile oMediaFile = new MP3File(oSourceFile);
-        
-            // write v2.3.0 tag to file
-            ID3V2_3_0Tag oID3V2_3_0Tag = new ID3V2_3_0Tag();
-            
-            TALBTextInformationID3V2Frame oTALB = new TALBTextInformationID3V2Frame("Album");
-            //oTALB.setCompressionFlag(true);
-            oID3V2_3_0Tag.setFrame(oTALB);
-            //oID3V2_3_0Tag.setAlbum("Album");
-            TPE1TextInformationID3V2Frame oTPE1 = new TPE1TextInformationID3V2Frame("Artist");
-            oID3V2_3_0Tag.setFrame(oTPE1);
-            //oID3V2_3_0Tag.removeFrame(TPE1TextInformationID3V2Frame.class);
-            
-            oID3V2_3_0Tag.setPaddingLength(8);
-        
-            System.out.println(oID3V2_3_0Tag.toString());
-        
-            oMediaFile.setID3Tag(oID3V2_3_0Tag);
-            oMediaFile.sync();
-            
-            // check against expected result
-            ID3Util.compare(AllTests.s_RootPath + "v2_3_0tags.mp3", AllTests.s_RootPath + "id3_v2_3_0_testresult.mp3");
-        }
-        catch (Exception e)
-        {
-            fail(e.toString());
-        }
-    }*/
-    
     private void runTagVerifyTest(ID3V2_3_0Tag oID3V2_3_0Tag, String sExpectedPrefix)
     {
         try
         {
             // get a copy of an unmodified file to edit
-            ID3Util.copy(AllTests.s_RootPath + "notags.mp3", AllTests.s_RootPath + "id3_v2_3_0_tagtest.mp3");
+            ID3Util.copy(AllTests.s_RootPath + "notags.mp3", TAG_TEST_MP3);
 
-            File oSourceFile = new File(AllTests.s_RootPath + "id3_v2_3_0_tagtest.mp3");
+            File oSourceFile = new File(TAG_TEST_MP3);
             MediaFile oMediaFile = new MP3File(oSourceFile);
         
             // write v2.3.0 tag to file
@@ -2223,9 +2188,9 @@ public class ID3V2Test extends TestCase
         try
         {
             // get a copy of an unmodified file to edit
-            ID3Util.copy(AllTests.s_RootPath + "notags.mp3", AllTests.s_RootPath + "id3_v2_3_0_tagtest.mp3");
+            ID3Util.copy(AllTests.s_RootPath + "notags.mp3", TAG_TEST_MP3);
 
-            File oSourceFile = new File(AllTests.s_RootPath + "id3_v2_3_0_tagtest.mp3");
+            File oSourceFile = new File(TAG_TEST_MP3);
             MediaFile oMediaFile = new MP3File(oSourceFile);
         
             // write v2.3.0 tag to file
@@ -2282,9 +2247,9 @@ public class ID3V2Test extends TestCase
         try
         {
             // get a copy of a file with v2.3.0 tags to test reading
-            ID3Util.copy(AllTests.s_RootPath + "v1_1tags.mp3", AllTests.s_RootPath + "id3_v1_1_tagtest.mp3");
+            ID3Util.copy(AllTests.s_RootPath + "v1_1tags.mp3", TAG_TEST_MP3);
             
-            File oFile = new File(AllTests.s_RootPath + "id3_v1_1_tagtest.mp3");
+            File oFile = new File(TAG_TEST_MP3);
             IFileSource oFileSource = new FileSource(oFile);
             MP3File oMP3File = new MP3File(oFileSource);
             
@@ -2301,9 +2266,9 @@ public class ID3V2Test extends TestCase
         try
         {
             // get a copy of an unmodified file to edit
-            ID3Util.copy(AllTests.s_RootPath + "notags.mp3", AllTests.s_RootPath + "id3_v2_3_0_tagtest.mp3");
+            ID3Util.copy(AllTests.s_RootPath + "notags.mp3", TAG_TEST_MP3);
 
-            File oSourceFile = new File(AllTests.s_RootPath + "id3_v2_3_0_tagtest.mp3");
+            File oSourceFile = new File(TAG_TEST_MP3);
             MediaFile oMediaFile = new MP3File(oSourceFile);
         
             // write v2.3.0 tag to file
@@ -2379,9 +2344,9 @@ public class ID3V2Test extends TestCase
         try
         {
             // get a copy of an unmodified file to edit (although it is a failure if the file is edited in this test!)
-            ID3Util.copy(AllTests.s_RootPath + "notags.mp3", AllTests.s_RootPath + "id3_v2_3_0_tagtest.mp3");
+            ID3Util.copy(AllTests.s_RootPath + "notags.mp3", TAG_TEST_MP3);
 
-            File oSourceFile = new File(AllTests.s_RootPath + "id3_v2_3_0_tagtest.mp3");
+            File oSourceFile = new File(TAG_TEST_MP3);
             MediaFile oMediaFile = new MP3File(oSourceFile);
         
             // write v2.3.0 tag to file
@@ -2414,7 +2379,7 @@ public class ID3V2Test extends TestCase
         {
             // create an invalid frame (TYER with no value) to test strict and non-strict reading of it
             String sPrefix = "ID3<bh:03><bh:00><bh:00><bh:00><bh:00><bh:00><bh:0f>TYER<bh:00><bh:00><bh:00><bh:05><bh:00><bh:00><bh:00>abcd";
-            String sSourceFile = AllTests.s_RootPath + "id3_v2_3_0_invalid.mp3";
+            String sSourceFile = AllTests.s_TempPath + "id3_v2_3_0_invalid.mp3";
             FileInputStream oFIS = null;
             FileOutputStream oFOS = null;
             try
@@ -2484,7 +2449,7 @@ public class ID3V2Test extends TestCase
             // create a frame with an invalid frame id ("COM ") to test strict and non-strict reading of it
             // (this test inspired by the illegal frames which iTunes adds to MP3 files)
             String sPrefix = "ID3<bh:03><bh:00><bh:00><bh:00><bh:00><bh:00><bh:0f>COM <bh:00><bh:00><bh:00><bh:05><bh:00><bh:00><bh:00>abcd";
-            String sSourceFile = AllTests.s_RootPath + "id3_v2_3_0_invalid.mp3";
+            String sSourceFile = AllTests.s_TempPath + "id3_v2_3_0_invalid.mp3";
             FileInputStream oFIS = null;
             FileOutputStream oFOS = null;
             try
@@ -2559,9 +2524,9 @@ public class ID3V2Test extends TestCase
         try
         {
             // get a copy of an unmodified file to edit
-            ID3Util.copy(AllTests.s_RootPath + "notags.mp3", AllTests.s_RootPath + "id3_v2_3_0_tagtest.mp3");
+            ID3Util.copy(AllTests.s_RootPath + "notags.mp3", TAG_TEST_MP3);
 
-            File oSourceFile = new File(AllTests.s_RootPath + "id3_v2_3_0_tagtest.mp3");
+            File oSourceFile = new File(TAG_TEST_MP3);
             MediaFile oMediaFile = new MP3File(oSourceFile);
         
             // write v2.3.0 tag to file containing an unknown frame
@@ -2594,7 +2559,7 @@ public class ID3V2Test extends TestCase
         }
     }
     
-    public void testReadRandomMP3s()
+    public void x_testReadRandomMP3s()
     {
         ID3Tag.useStrict(false);
         try
@@ -2667,7 +2632,7 @@ public class ID3V2Test extends TestCase
         {
             // create a tag with duplicate frames in violation of the spec, to test strict and non-strict reading of it
             String sPrefix = "ID3<bh:03><bh:00><bh:00><bh:00><bh:00><bh:00>8COMM<bh:00><bh:00><bh:00><bh:12><bh:00><bh:00><bh:00>engabcd<bh:00>Comment 1COMM<bh:00><bh:00><bh:00><bh:12><bh:00><bh:00><bh:00>engabcd<bh:00>Comment 2";
-            String sSourceFile = AllTests.s_RootPath + "id3_v2_3_0_duplicate.mp3";
+            String sSourceFile = AllTests.s_TempPath + "id3_v2_3_0_duplicate.mp3";
             FileInputStream oFIS = null;
             FileOutputStream oFOS = null;
             try
@@ -3611,7 +3576,7 @@ public class ID3V2Test extends TestCase
         {
             // create a tag with an encrypted TPE1 frame that has no registered agent
             String sPrefix = "ID3<bh:03><bh:00><bh:00><bh:00><bh:00><bh:00>'ENCR<bh:00><bh:00><bh:00><bh:0c><bh:00><bh:00>jid3-????<bh:00><bh:89><bh:01>TPE1<bh:00><bh:00><bh:00><bh:06><bh:00>@<bh:89><bh:01>ifmmp";
-            String sSourceFile = AllTests.s_RootPath + "id3_v2_3_0_encrypted.mp3";
+            String sSourceFile = AllTests.s_TempPath + "id3_v2_3_0_encrypted.mp3";
             FileInputStream oFIS = null;
             FileOutputStream oFOS = null;
             try
