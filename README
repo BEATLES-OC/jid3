@@ -1,2 +1,9 @@
-This project is currently built using Netbeans 4.1.
+This project can be built using Netbeans 4.1 or IntelliJ 10.
+
+It differs from jid3 v0.46 by forcing UTF-16LE output, which provides
+compatibility with Windows Media Player 9-11, which display error
+messages if UTF-16BE encoded tags are included in the MP3 file
+(which happens when jid3 is run on Linux or Mac, but not Windows).
+
+Yay Java.
 
